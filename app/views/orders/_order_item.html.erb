@@ -1,0 +1,27 @@
+<div class="order-item">
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th colspan="2">Product</th>
+      <th>Unit Price</th>
+      <th>Quantity</th>
+      <th>Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @order.line_items.each do |line_item| %>
+        <%= render 'item', image: line_item.product.image_url, product: line_item.product, quantity: line_item.quantity.to_i %>
+    <% end %>
+  </tbody>
+  <tfoot>
+    <tr>
+      <th colspan="4">
+        <h4>ORDER TOTAL:</h4>
+      </th>
+      <th>
+       <h4> <%= humanized_money_with_symbol (@order.total_cents / 100) %> </h4>
+      </th>
+    </tr>
+  </tfoot>
+</table>
+</div>
